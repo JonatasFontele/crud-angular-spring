@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { first, tap } from 'rxjs';
 
 import { Course } from '../model/course';
 
@@ -16,6 +16,8 @@ export class CoursesService {
   list() {
     return this.httpClient.get<Course[]>(this.API)
     .pipe(
+      //take(1), assim que o servidor der uma resposta, utilizo ela e finalizo a inscrição nessa origem de dados
+      first(), //obter a primeira resposta que o servidor enviar (ex.:lista de json)
       tap(courses => console.log(courses))
     );
   }
