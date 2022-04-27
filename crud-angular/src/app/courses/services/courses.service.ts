@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, tap } from 'rxjs';
+import { delay, first, tap } from 'rxjs';
 
 import { Course } from '../model/course';
 
@@ -18,6 +18,7 @@ export class CoursesService {
     .pipe(
       //take(1), assim que o servidor der uma resposta, utilizo ela e finalizo a inscrição nessa origem de dados
       first(), //obter a primeira resposta que o servidor enviar (ex.:lista de json)
+      //delay(5000), //para testar o spinner
       tap(courses => console.log(courses))
     );
   }
