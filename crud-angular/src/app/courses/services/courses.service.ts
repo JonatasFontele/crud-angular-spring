@@ -18,7 +18,7 @@ export class CoursesService {
     .pipe(
       //take(1), assim que o servidor der uma resposta, utilizo ela e finalizo a inscrição nessa origem de dados
       first(), //obter a primeira resposta que o servidor enviar (ex.:lista de json)
-      //delay(5000), //para testar o spinner
+      delay(5000), //para testar o spinner
       tap(courses => console.log(courses))
     );
   }
